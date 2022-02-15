@@ -33,20 +33,7 @@ def get_info(restaurant_type: str) -> List[Tuple]:
     cmnd = ''
 
     # Creating Query according to the day
-    if curr_day == 'Monday':
-        cmnd = f"SELECT name, restaurant_type, description FROM restaurant WHERE restaurant_type = '{restaurant_type}' and monday_opening_time < '{curr_hour}:{curr_minute}:{curr_second}' and monday_closing_time > '{curr_hour}:{curr_minute}:{curr_second}'"
-    elif curr_day == 'Tuesday':
-        cmnd = f"SELECT name, restaurant_type, description FROM restaurant WHERE restaurant_type = '{restaurant_type}' and tuesday_opening_time < '{curr_hour}:{curr_minute}:{curr_second}' and tuesday_closing_time > '{curr_hour}:{curr_minute}:{curr_second}'"
-    elif curr_day == 'Wednesday':
-        cmnd = f"SELECT name, restaurant_type, description FROM restaurant WHERE restaurant_type = '{restaurant_type}' and wednesday_opening_time < '{curr_hour}:{curr_minute}:{curr_second}' and wednesday_closing_time > '{curr_hour}:{curr_minute}:{curr_second}'"
-    elif curr_day == 'Thursday':
-        cmnd = f"SELECT name, restaurant_type, description FROM restaurant WHERE restaurant_type = '{restaurant_type}' and thursday_opening_time < '{curr_hour}:{curr_minute}:{curr_second}' and thursday_closing_time > '{curr_hour}:{curr_minute}:{curr_second}'"
-    elif curr_day == 'Friday':
-        cmnd = f"SELECT name, restaurant_type, description FROM restaurant WHERE restaurant_type = '{restaurant_type}' and friday_opening_time < '{curr_hour}:{curr_minute}:{curr_second}' and friday_closing_time > '{curr_hour}:{curr_minute}:{curr_second}'"
-    elif curr_day == 'Saturday':
-        cmnd = f"SELECT name, restaurant_type, description FROM restaurant WHERE restaurant_type = '{restaurant_type}' and saturday_opening_time < '{curr_hour}:{curr_minute}:{curr_second}' and saturday_closing_time > '{curr_hour}:{curr_minute}:{curr_second}'"
-    elif curr_day == 'Sunday':
-        cmnd = f"SELECT name, restaurant_type, description FROM restaurant WHERE restaurant_type = '{restaurant_type}' and sunday_opening_time < '{curr_hour}:{curr_minute}:{curr_second}' and sunday_closing_time > '{curr_hour}:{curr_minute}:{curr_second}'"
+    cmnd = f"SELECT name, restaurant_type, description FROM restaurant WHERE restaurant_type = '{restaurant_type}' and {curr_day.lower()}_opening_time < '{curr_hour}:{curr_minute}:{curr_second}' and monday_closing_time > '{curr_hour}:{curr_minute}:{curr_second}'"
     cursor.execute(cmnd)
     result = cursor.fetchall()
     
