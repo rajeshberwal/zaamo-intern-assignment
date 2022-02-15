@@ -33,7 +33,7 @@ def get_info(restaurant_type: str) -> List[Tuple]:
     cmnd = ''
 
     # Creating Query according to the day
-    cmnd = f"SELECT name, restaurant_type, description FROM restaurant WHERE restaurant_type = '{restaurant_type}' and {curr_day.lower()}_opening_time < '{curr_hour}:{curr_minute}:{curr_second}' and monday_closing_time > '{curr_hour}:{curr_minute}:{curr_second}'"
+    cmnd = f"SELECT name, restaurant_type, description FROM restaurant WHERE restaurant_type = '{restaurant_type}' and {curr_day.lower()}_opening_time < '{curr_hour}:{curr_minute}:{curr_second}' and {curr_day.lower()}_closing_time > '{curr_hour}:{curr_minute}:{curr_second}'"
     cursor.execute(cmnd)
     result = cursor.fetchall()
     
